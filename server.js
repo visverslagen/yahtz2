@@ -77,7 +77,16 @@ io.on('connection', socket => {
 
   socket.on('start',function(){
      // alleen de eerste speler kan het spel starten!
-     if(players[_turn] == socket){
+
+     //const user = getCurrentUser(socket.id);
+     //var users = getRoomUsers(user.room);
+     //console.log(users[0]);
+     //console.log(getRoomUsers(user.room));
+
+     //console.log(players[_turn]);
+     //console.log(socket);
+
+     //if(players[_turn] == socket){
         _turn = current_turn++ % players.length;
         const user = getCurrentUser(socket.id);
         io.in(user.room).emit('message', formatMessage(botName, `spel is gestart`));
@@ -88,7 +97,7 @@ io.on('connection', socket => {
         // naar volgende speler bericht sturen
         var next_player = (current_turn+1);
         io.to(players[next_player++ % players.length].id).emit('your_turn', 'test');
-     }
+     //}
  });
 
  //  socket.on('pass_turn', result => {
@@ -341,7 +350,9 @@ io.on('connection', socket => {
 
       //console.log('A player disconnected');
       players.splice(players.indexOf(socket),1);
-      _turn--;
+      //_turn--;
+      var _turn = 0;
+
       //console.log("A number of players now ",players.length);
     }
   });

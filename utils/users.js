@@ -31,7 +31,8 @@ function userJoin(id, username, room,
     yatzyDone,
     total,
     dices,
-    rolls
+    rolls,
+    active
 ) {
   const user = { id, username, room, ones,
   onesDone,
@@ -62,7 +63,8 @@ function userJoin(id, username, room,
   yatzyDone,
   total,
   dices,
-  rolls };
+  rolls,
+  active };
 
   users.push(user);
 
