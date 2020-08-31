@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+        rel="stylesheet"
+        href="css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Yahtzee</title>
+  </head>
+  <body>
+
+    <div class="chat-container">
+      <header class="chat-header">
+        <h1><i class="fas fa-smile"></i> Yahtzee</h1>
+        <a href="index.html" class="btn">Stoppen</a>
+      </header>
+      <main class="chat-main">
+        <div class="chat-sidebar">
+          <!-- <h3><i class="fas fa-comments"></i> Room Name:</h3> -->
+          <input type="hidden" id="room-name" name="room-name">
+          <h3><i class="fas fa-users"></i> Deelnemers</h3>
+          <ul id="users"></ul>
+        </div>
+        <div id="game-container" style="padding:20px;">
+            <a href="#" id="start" class="btn">Start spel</a>
+
+            <div id="game" class="inactive">
+                <div id="dices">
+                    <form id="dices-form">
+                      <a href="#" id="throw" class="btn inactive">Gooi</a> <span id="roll">0/3</span>
+                      <input id="dice1" class="dice" type="text" required autocomplete="off" style="width:30px;height:30px;font-size:21px;padding-left:7px;" readonly />
+                      <input id="dice2" class="dice" type="text" required autocomplete="off" style="width:30px;height:30px;font-size:21px;padding-left:7px;" readonly />
+                      <input id="dice3" class="dice" type="text" required autocomplete="off" style="width:30px;height:30px;font-size:21px;padding-left:7px;" readonly />
+                      <input id="dice4" class="dice" type="text" required autocomplete="off" style="width:30px;height:30px;font-size:21px;padding-left:7px;" readonly />
+                      <input id="dice5" class="dice" type="text" required autocomplete="off" style="width:30px;height:30px;font-size:21px;padding-left:7px;" readonly />
+                      <a href="#" id="turn" class="btn inactive">keuze maken en beurt doorgeven</a>
+                      <div id="choices" class="inactive">
+                          <br/><br/>
+                          <a href="#" id="choice_1" class="btn">1</a>
+                          <a href="#" id="choice_2" class="btn">2</a>
+                          <a href="#" id="choice_3" class="btn">3</a>
+                          <a href="#" id="choice_4" class="btn">4</a>
+                          <a href="#" id="choice_5" class="btn">5</a>
+                          <a href="#" id="choice_6" class="btn">6</a>
+                          <!-- <br/><br/>
+                          <a href="#" id="choice_3ofakind" class="btn">3 dezelfde</a>
+                          <a href="#" id="choice_4ofakind" class="btn">4 dezelfde</a>
+                          <a href="#" id="choice_fullhouse" class="btn">Full house</a>
+                          <a href="#" id="choice_smallstreet" class="btn">Kleine straat</a>
+                          <a href="#" id="choice_largestreet" class="btn">Grote straat</a>
+                          <a href="#" id="choice_chance" class="btn">Chance</a>
+                          <a href="#" id="choice_yahtzee" class="btn">Yahtzee</a> -->
+
+                      </div>
+                    </form>
+                </div>
+                <br/><br/>
+
+                <table id="yahtzeeTable">
+    			<tr>
+    				<th>&nbsp;</th>
+    				<th>Punten</th>
+    			</tr>
+    			<tr>
+    				<td id="ones" class="cell">1</td>
+    				<td id="onesScore">-</td>
+    			</tr>
+    			<tr>
+    				<td id="twos" class="cell">2</td>
+    				<td id="twosScore">-</td>
+    			</tr>
+    			<tr>
+    				<td id="threes" class="cell">3</td>
+    				<td id="threesScore">-</td>
+    			</tr>
+    			<tr>
+    				<td id="fours" class="cell">4</td>
+    				<td id="foursScore">-</td>
+    			</tr>
+    			<tr>
+    				<td id="fives" class="cell">5</td>
+    				<td id="fivesScore">-</td>
+    			</tr>
+    			<tr>
+    				<td id="sixes" class="cell">6</td>
+    				<td id="sixesScore">-</td>
+    			</tr>
+    			<tr>
+    				<td id="upperSecBonus"> Bonus bovenste helft </td>
+    				<td id="upperSecBonusScore">-</td>
+    			</tr>
+    			<!-- <tr>
+    				<td id="threeOfAKind" class="cell">3 dezelfde</td>
+    				<td id="threeOfAKindScore">-</td>
+    			</tr>
+    			<tr>
+    				<td id="fourOfAKind" class="cell">4 dezelfde</td>
+    				<td id="fourOfAKindScore">-</td>
+    			</tr>
+    			<tr>
+    				<td id="fullHouse" class="cell">Full House</td>
+    				<td id="fullHouseScore">-</td>
+    			</tr>
+    			<tr>
+    				<td id="smallStraight" class="cell">Kleine straat</td>
+    				<td id="smallStraightScore">-</td>
+    			</tr>
+    			<tr>
+    				<td id="largeStraight" class="cell">Grote straat</td>
+    				<td id="largeStraightScore">-</td>
+    			</tr>
+    			<tr>
+    				<td id="chance" class="cell">Chance</td>
+    				<td id="chanceScore">-</td>
+    			</tr>
+    			<tr>
+    				<td id="yahtzee" class="cell">Yahtzee</td>
+    				<td id="yahtzeeScore">-</td>
+    			</tr> -->
+                <tr>
+    				<td id="total" class="cell"><b>Eindscore</b></td>
+    				<td id="totalScore">-</td>
+    			</tr>
+    		</table>
+            </div>
+        </div>
+        <div class="chat-messages"></div>
+      </main>
+      <div class="chat-form-container" style="display:none">
+        <form id="chat-form">
+          <input
+            id="msg"
+            type="text"
+            placeholder="Vul bericht in"
+            required
+            autocomplete="off"
+          />
+          <button class="btn"><i class="fas fa-paper-plane"></i> Verstuur</button>
+
+        </form>
+      </div>
+    </div>
+
+    <script src="js/qs.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
