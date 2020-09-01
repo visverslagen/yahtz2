@@ -2,6 +2,7 @@ const chatForm = document.getElementById('chat-form');
 const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
+const scoreboard = document.getElementById('scoreboard');
 
 const throwButton = document.getElementById('throw');
 const startButton = document.getElementById('start');
@@ -36,6 +37,7 @@ socket.emit('joinRoom', { username, room });
 socket.on('roomUsers', ({ room, users, html }) => {
   outputRoomName(room);
   outputUsers(users);
+  outputScores(users);
 });
 
 // Message from server
@@ -52,32 +54,41 @@ socket.on('error', msg => {
 });
 
 socket.on('game-data', data => {
+    outputScores(data);
+});
+
+socket.on('button-data', data => {
+
+
     if(data.onesDone){
         choice_1.classList.add("inactive");
-        document.querySelector("#onesScore").innerHTML = data.ones;
+    }else{
+        choice_1.classList.remove("inactive");
     }
     if(data.twosDone){
         choice_2.classList.add("inactive");
-        document.querySelector("#twosScore").innerHTML = data.twos;
+    }else{
+        choice_2.classList.remove("inactive");
     }
     if(data.threesDone){
         choice_3.classList.add("inactive");
-        document.querySelector("#threesScore").innerHTML = data.threes;
+    }else{
+        choice_3.classList.remove("inactive");
     }
     if(data.foursDone){
         choice_4.classList.add("inactive");
-        document.querySelector("#foursScore").innerHTML = data.fours;
+    }else{
+        choice_4.classList.remove("inactive");
     }
     if(data.fivesDone){
         choice_5.classList.add("inactive");
-        document.querySelector("#fivesScore").innerHTML = data.fives;
+    }else{
+        choice_5.classList.remove("inactive");
     }
     if(data.sixesDone){
         choice_6.classList.add("inactive");
-        document.querySelector("#sixesScore").innerHTML = data.sixes;
-    }
-    if(data.total > 0){
-        document.querySelector("#totalScore").innerHTML = data.total;
+    }else{
+        choice_6.classList.remove("inactive");
     }
 });
 
@@ -292,5 +303,12 @@ function outputRoomName(room) {
 function outputUsers(users) {
   userList.innerHTML = `
     ${users.map(user => `<li>${user.username}</li>`).join('')}
+  `;
+}
+
+function outputScores(users) {
+  scoreboard.innerHTML = '<table id="yahtzeeTable" style="width:100px; float:left"><tr><th>&nbsp;</th></tr><tr><td id="ones" class="cell">1</td></tr><tr><td id="twos" class="cell">2</td></tr><tr><td id="threes" class="cell">3</td></tr><tr><td id="fours" class="cell">4</td></tr><tr><td id="fives" class="cell">5</td></tr><tr><td id="sixes" class="cell">6</td></tr><tr><td id="upperSecBonus">Bonus</td></tr><tr><td id="total" class="cell"><b>Score</b></td></tr></table>';
+  scoreboard.innerHTML = scoreboard.innerHTML + `
+    ${users.map(user => `<table id="yahtzeeTable2" style="width:70px; float:left"> <tr> <th>${user.username}</th> </tr><tr> <td id="onesScore">${user.ones}</td></tr><tr> <td id="twosScore">${user.twos}</td></tr><tr> <td id="threesScore">${user.threes}</td></tr><tr> <td id="foursScore">${user.fours}</td></tr><tr> <td id="fivesScore">${user.fives}</td></tr><tr> <td id="sixesScore">${user.sixes}</td></tr><tr> <td id="upperSecBonusScore">-</td></tr><tr> <td id="totalScore">${user.total}</td></tr></table>`).join('')}
   `;
 }

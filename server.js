@@ -219,7 +219,8 @@ io.on('connection', socket => {
           user.rolls = _rolls;
 
           // return user data to game!
-          io.to(user.id).emit('game-data', user);
+          io.to(user.id).emit('button-data', user);
+          io.to(user.room).emit('game-data', getRoomUsers(user.room));
 
           // move to next player
           _turn = current_turn++ % players.length;

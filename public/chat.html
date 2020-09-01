@@ -14,16 +14,11 @@
 
     <div class="chat-container">
       <header class="chat-header">
-        <h1><i class="fas fa-smile"></i> Yahtzee</h1>
+        <h1>Yahtzee</h1>
         <a href="index.html" class="btn">Stoppen</a>
       </header>
       <main class="chat-main">
-        <div class="chat-sidebar">
-          <!-- <h3><i class="fas fa-comments"></i> Room Name:</h3> -->
-          <input type="hidden" id="room-name" name="room-name">
-          <h3><i class="fas fa-users"></i> Deelnemers</h3>
-          <ul id="users"></ul>
-        </div>
+
         <div id="game-container" style="padding:20px;">
             <a href="#" id="start" class="btn">Start spel</a>
 
@@ -59,75 +54,49 @@
                 </div>
                 <br/><br/>
 
-                <table id="yahtzeeTable">
-    			<tr>
-    				<th>&nbsp;</th>
-    				<th>Punten</th>
-    			</tr>
-    			<tr>
-    				<td id="ones" class="cell">1</td>
-    				<td id="onesScore">-</td>
-    			</tr>
-    			<tr>
-    				<td id="twos" class="cell">2</td>
-    				<td id="twosScore">-</td>
-    			</tr>
-    			<tr>
-    				<td id="threes" class="cell">3</td>
-    				<td id="threesScore">-</td>
-    			</tr>
-    			<tr>
-    				<td id="fours" class="cell">4</td>
-    				<td id="foursScore">-</td>
-    			</tr>
-    			<tr>
-    				<td id="fives" class="cell">5</td>
-    				<td id="fivesScore">-</td>
-    			</tr>
-    			<tr>
-    				<td id="sixes" class="cell">6</td>
-    				<td id="sixesScore">-</td>
-    			</tr>
-    			<tr>
-    				<td id="upperSecBonus"> Bonus bovenste helft </td>
-    				<td id="upperSecBonusScore">-</td>
-    			</tr>
-    			<!-- <tr>
-    				<td id="threeOfAKind" class="cell">3 dezelfde</td>
-    				<td id="threeOfAKindScore">-</td>
-    			</tr>
-    			<tr>
-    				<td id="fourOfAKind" class="cell">4 dezelfde</td>
-    				<td id="fourOfAKindScore">-</td>
-    			</tr>
-    			<tr>
-    				<td id="fullHouse" class="cell">Full House</td>
-    				<td id="fullHouseScore">-</td>
-    			</tr>
-    			<tr>
-    				<td id="smallStraight" class="cell">Kleine straat</td>
-    				<td id="smallStraightScore">-</td>
-    			</tr>
-    			<tr>
-    				<td id="largeStraight" class="cell">Grote straat</td>
-    				<td id="largeStraightScore">-</td>
-    			</tr>
-    			<tr>
-    				<td id="chance" class="cell">Chance</td>
-    				<td id="chanceScore">-</td>
-    			</tr>
-    			<tr>
-    				<td id="yahtzee" class="cell">Yahtzee</td>
-    				<td id="yahtzeeScore">-</td>
-    			</tr> -->
+                <div id="scoreboard">
+            waiting for players to join...
+
+            <!-- <table id="yahtzeeTable2" style="width:70px; float:left">
                 <tr>
-    				<td id="total" class="cell"><b>Eindscore</b></td>
-    				<td id="totalScore">-</td>
-    			</tr>
-    		</table>
+                    <th>Speler x</th>
+                </tr>
+                <tr>
+                    <td id="onesScore">-</td>
+                </tr>
+                <tr>
+                    <td id="twosScore">-</td>
+                </tr>
+                <tr>
+                    <td id="threesScore">-</td>
+                </tr>
+                <tr>
+                    <td id="foursScore">-</td>
+                </tr>
+                <tr>
+                    <td id="fivesScore">-</td>
+                </tr>
+                <tr>
+                    <td id="sixesScore">-</td>
+                </tr>
+                <tr>
+                    <td id="upperSecBonusScore">-</td>
+                </tr>
+                <tr>
+                    <td id="totalScore">-</td>
+                </tr>
+            </table> -->
+            </div>
+
             </div>
         </div>
-        <div class="chat-messages"></div>
+        <div class="chat-messages" style="position:relative;left:-999999px;"></div>
+        <div class="chat-sidebar" style="position:relative;left:-999999px;">
+          <!-- <h3><i class="fas fa-comments"></i> Room Name:</h3> -->
+          <input type="hidden" id="room-name" name="room-name">
+          <h3><i class="fas fa-users"></i> Deelnemers</h3>
+          <ul id="users"></ul>
+        </div>
       </main>
       <div class="chat-form-container" style="display:none">
         <form id="chat-form">
