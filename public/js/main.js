@@ -3,6 +3,7 @@ const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
 const scoreboard = document.getElementById('scoreboard');
+const visual_dices = document.getElementById('visual_dices');
 
 const throwButton = document.getElementById('throw');
 const startButton = document.getElementById('start');
@@ -13,6 +14,12 @@ const dice2 = document.getElementById('dice2');
 const dice3 = document.getElementById('dice3');
 const dice4 = document.getElementById('dice4');
 const dice5 = document.getElementById('dice5');
+
+const vdice1 = document.getElementById('vdice1');
+const vdice2 = document.getElementById('vdice2');
+const vdice3 = document.getElementById('vdice3');
+const vdice4 = document.getElementById('vdice4');
+const vdice5 = document.getElementById('vdice5');
 
 const choice_1 = document.getElementById('choice_1');
 const choice_2 = document.getElementById('choice_2');
@@ -96,10 +103,21 @@ socket.on('start', data => {
     document.querySelector("#game").classList.remove("inactive");
 });
 socket.on('game', data => {
+    //var visual_html = '';
     var i;
     for (i = 0; i < data.dices.length; i++) {
       document.querySelector("#dice"+[(i+1)]).value = data.dices[i];
+
+      if(data.dices[i] == 1){ var temp_html = '<div class="first-face" id="vdicenr'+(i+1)+'" data-nr="1"> <span class="pip"></span> </div>'; }
+      if(data.dices[i] == 2){ var temp_html = '<div class="second-face" id="vdicenr'+(i+1)+'" data-nr="2"> <span class="pip"></span> <span class="pip"></span> </div>'; }
+      if(data.dices[i] == 3){ var temp_html = '<div class="third-face" id="vdicenr'+(i+1)+'" data-nr="3"> <span class="pip"></span> <span class="pip"></span> <span class="pip"></span> </div>'; }
+      if(data.dices[i] == 4){ var temp_html = '<div class="fourth-face" id="vdicenr'+(i+1)+'" data-nr="4"> <div class="column"> <span class="pip"></span> <span class="pip"></span> </div><div class="column"> <span class="pip"></span> <span class="pip"></span> </div></div>'; }
+      if(data.dices[i] == 5){ var temp_html = '<div class="fifth-face" id="vdicenr'+(i+1)+'" data-nr="5"> <div class="column"> <span class="pip"></span> <span class="pip"></span> </div><div class="column"> <span class="pip"></span> </div><div class="column"> <span class="pip"></span> <span class="pip"></span> </div></div>'; }
+      if(data.dices[i] == 6){ var temp_html = '<div class="sixth-face" id="vdicenr'+(i+1)+'" data-nr="6"> <div class="column"> <span class="pip"></span> <span class="pip"></span> <span class="pip"></span> </div><div class="column"> <span class="pip"></span> <span class="pip"></span> <span class="pip"></span> </div></div>'; }
+
+      document.querySelector("#vdice"+[(i+1)]).innerHTML = temp_html;
     }
+
     if(data.roll == 3){
         document.querySelector("#throw").classList.add("inactive");
     }
@@ -135,56 +153,59 @@ socket.on('your_turn', message => {
     document.querySelector("#dice"+[(i+1)]).value = "";
     document.querySelector("#dice"+[(i+1)]).style.border = "1px solid #ccc";
     document.querySelector("#dice"+[(i+1)]).classList.remove("selected");
+
+    document.querySelector("#vdice"+[(i+1)]).innerHTML = "";
+    document.querySelector("#vdice"+[(i+1)]).classList.remove("selected");
   }
 });
 
-dice1.addEventListener('click', function(e) {
-    if(dice1.classList.contains("selected")){
-        dice1.classList.remove("selected");
-        dice1.style.border = "1px solid #ccc";
+vdice1.addEventListener('click', function(e) {
+    if(vdice1.classList.contains("selected")){
+        vdice1.classList.remove("selected");
+        //vdice1.style.border = "1px solid #ccc";
     }else{
-        dice1.classList.add("selected");
-        dice1.style.border = "thick solid #667AFF";
+        vdice1.classList.add("selected");
+        //vdice1.style.border = "thick solid #667AFF";
     }
 });
 
-dice2.addEventListener('click', function(e) {
-    if(dice2.classList.contains("selected")){
-        dice2.classList.remove("selected");
-        dice2.style.border = "1px solid #ccc";
+vdice2.addEventListener('click', function(e) {
+    if(vdice2.classList.contains("selected")){
+        vdice2.classList.remove("selected");
+        //vdice2.style.border = "1px solid #ccc";
     }else{
-        dice2.classList.add("selected");
-        dice2.style.border = "thick solid #667AFF";
+        vdice2.classList.add("selected");
+        //vdice2.style.border = "thick solid #667AFF";
     }
 });
 
-dice3.addEventListener('click', function(e) {
-    if(dice3.classList.contains("selected")){
-        dice3.classList.remove("selected");
-        dice3.style.border = "1px solid #ccc";
+vdice3.addEventListener('click', function(e) {
+    if(vdice3.classList.contains("selected")){
+        vdice3.classList.remove("selected");
+        //vdice3.style.border = "1px solid #ccc";
     }else{
-        dice3.classList.add("selected");
-        dice3.style.border = "thick solid #667AFF";
+        vdice3.classList.add("selected");
+        //vdice3.style.border = "thick solid #667AFF";
     }
 });
 
-dice4.addEventListener('click', function(e) {
-    if(dice4.classList.contains("selected")){
-        dice4.classList.remove("selected");
-        dice4.style.border = "1px solid #ccc";
+vdice4.addEventListener('click', function(e) {
+    if(vdice4.classList.contains("selected")){
+        vdice4.classList.remove("selected");
+        //vdice4.style.border = "1px solid #ccc";
     }else{
-        dice4.classList.add("selected");
-        dice4.style.border = "thick solid #667AFF";
+        vdice4.classList.add("selected");
+        //vdice4.style.border = "thick solid #667AFF";
     }
 });
 
-dice5.addEventListener('click', function(e) {
-    if(dice5.classList.contains("selected")){
-        dice5.classList.remove("selected");
-        dice5.style.border = "1px solid #ccc";
+vdice5.addEventListener('click', function(e) {
+    if(vdice5.classList.contains("selected")){
+        vdice5.classList.remove("selected");
+        //vdice5.style.border = "1px solid #ccc";
     }else{
-        dice5.classList.add("selected");
-        dice5.style.border = "thick solid #667AFF";
+        vdice5.classList.add("selected");
+        //vdice5.style.border = "thick solid #667AFF";
     }
 });
 
@@ -264,8 +285,8 @@ throwButton.addEventListener('click', function(e) {
     var keep = [];
     var i;
     for (i = 0; i < 5; i++) {
-     if(document.querySelector("#dice"+[(i+1)]).classList.contains("selected")){
-        keep.push([(i+1), document.querySelector("#dice"+[(i+1)]).value]);
+     if(document.querySelector("#vdice"+[(i+1)]).classList.contains("selected")){
+        keep.push([(i+1), document.querySelector("#vdicenr"+(i+1)).getAttribute('data-nr')]);
      }
     }
     socket.emit('roll_dice', keep);

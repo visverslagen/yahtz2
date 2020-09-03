@@ -12,6 +12,116 @@
   </head>
   <body>
 
+      <style>
+      .first-face {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .second-face {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .second-face .pip:nth-of-type(2) {
+        align-self: flex-end;
+      }
+
+      .third-face {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .third-face .pip:nth-of-type(2) {
+        align-self: center;
+      }
+
+      .third-face .pip:nth-of-type(3) {
+        align-self: flex-end;
+      }
+
+      .fourth-face, .sixth-face {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .fourth-face .column, .sixth-face .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .fifth-face {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .fifth-face .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .fifth-face .column:nth-of-type(2) {
+        justify-content: center;
+      }
+
+      /* OTHER STYLES */
+
+
+      [class$="face"] {
+        margin: 5px;
+        margin-top:20px;
+        margin-bottom:20px;
+        padding: 4px;
+
+        float:left;
+        box-sizing: border-box;
+
+        background-color: #e7e7e7;
+        width: 104px;
+        height: 104px;
+        object-fit: contain;
+
+        box-shadow:
+          inset 0 5px white,
+          inset 0 -5px #bbb,
+          inset 5px 0 #d7d7d7,
+          inset -5px 0 #d7d7d7;
+
+        border-radius: 10%;
+      }
+
+      .pip {
+        display: block;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        margin: 4px;
+
+        background-color: #333;
+        box-shadow: inset 0 3px #111, inset 0 -3px #555;
+      }
+
+      #vdice1.selected [class$="face"]{
+          background-color: green;
+      }
+      #vdice2.selected [class$="face"]{
+          background-color: green;
+      }
+      #vdice3.selected [class$="face"]{
+          background-color: green;
+      }
+      #vdice4.selected [class$="face"]{
+          background-color: green;
+      }
+      #vdice5.selected [class$="face"]{
+          background-color: green;
+      }
+      </style>
+
+
     <div class="chat-container">
       <header class="chat-header">
         <h1>Yahtzee</h1>
@@ -26,13 +136,23 @@
                 <div id="dices">
                     <form id="dices-form">
                       <a href="#" id="throw" class="btn inactive">Gooi</a> <span id="roll">0/3</span>
-                      <input id="dice1" class="dice" type="text" required autocomplete="off" style="width:30px;height:30px;font-size:21px;padding-left:7px;" readonly />
-                      <input id="dice2" class="dice" type="text" required autocomplete="off" style="width:30px;height:30px;font-size:21px;padding-left:7px;" readonly />
-                      <input id="dice3" class="dice" type="text" required autocomplete="off" style="width:30px;height:30px;font-size:21px;padding-left:7px;" readonly />
-                      <input id="dice4" class="dice" type="text" required autocomplete="off" style="width:30px;height:30px;font-size:21px;padding-left:7px;" readonly />
-                      <input id="dice5" class="dice" type="text" required autocomplete="off" style="width:30px;height:30px;font-size:21px;padding-left:7px;" readonly />
+                      <input id="dice1" class="dice" type="hidden" required autocomplete="off" style="width:30px;height:30px;font-size:21px;padding-left:7px;" readonly />
+                      <input id="dice2" class="dice" type="hidden" required autocomplete="off" style="width:30px;height:30px;font-size:21px;padding-left:7px;" readonly />
+                      <input id="dice3" class="dice" type="hidden" required autocomplete="off" style="width:30px;height:30px;font-size:21px;padding-left:7px;" readonly />
+                      <input id="dice4" class="dice" type="hidden" required autocomplete="off" style="width:30px;height:30px;font-size:21px;padding-left:7px;" readonly />
+                      <input id="dice5" class="dice" type="hidden" required autocomplete="off" style="width:30px;height:30px;font-size:21px;padding-left:7px;" readonly />
+
+                      <div id="visual_dices" style="color:red">
+                          <div id="vdice1"></div>
+                          <div id="vdice2"></div>
+                          <div id="vdice3"></div>
+                          <div id="vdice4"></div>
+                          <div id="vdice5"></div>
+                      </div>
+
+
                       <a href="#" id="turn" class="btn inactive">keuze maken en beurt doorgeven</a>
-                      <div id="choices" class="inactive">
+                      <div id="choices" class="inactive" style="clear:both">
                           <br/><br/>
                           <a href="#" id="choice_1" class="btn">1</a>
                           <a href="#" id="choice_2" class="btn">2</a>
